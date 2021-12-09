@@ -1,6 +1,5 @@
-package AoC2021
+package aoc2021
 
-import utils.readInputAsListOfStrings
 import utils.readInputAsString
 
 private var test_input =

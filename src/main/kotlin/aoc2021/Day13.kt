@@ -1,4 +1,4 @@
-package AoC2021
+package aoc2021
 
 import utils.readInputAsString
 

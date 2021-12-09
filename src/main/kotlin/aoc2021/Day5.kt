@@ -1,9 +1,8 @@
-package AoC2021
+package aoc2021
 
+import utils.Line
+import utils.Point
 import utils.readInputAsListOfStrings
-
-typealias Point = Pair<Int, Int>
-typealias Line = Pair<Point, Point>
 
 private var test_input =
     """0,9 -> 5,9

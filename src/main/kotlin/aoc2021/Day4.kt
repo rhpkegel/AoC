@@ -1,6 +1,7 @@
-package AoC2021
+package aoc2021
 
 import utils.readAsEmptyLineSeparatedStrings
+import utils.spaceSeparatedStringToIntBoard
 
 typealias Board = List<List<Int>>
 
@@ -31,11 +32,6 @@ private fun Board.transpose(index: Int=0): Board {
     return if (index+1 >= this.size) listOf(newRow) else listOf(newRow).plus(this.transpose(index+1))
 }
 
-private fun String.convertToMatrix(): Board = this
-    .trim()
-    .split('\n')
-    .map { it.trim().split("\\s+".toRegex()).map { it.toInt() }}
-
 private fun Board.bingo(numberSequence: List<Int>): Pair<Board, List<Int>>? {
     this.forEach { if (it.all{numberSequence.contains(it)}) return Pair(this, numberSequence) }
     this.transpose().forEach { if (it.all{numberSequence.contains(it)}) return Pair(this, numberSequence) }
@@ -64,7 +60,7 @@ private fun solve(numberSequence: List<Int>, boards: List<Board>, winningIsLosin
 fun main() {
     val input = readAsEmptyLineSeparatedStrings("${Constants.INPUT_PATH}input_day_4.txt")
     val sequence = input.first().split(",").map { it.trim().toInt() }
-    val boards: List<Board> = input.drop(1).map{it.convertToMatrix()};
+    val boards: List<Board> = input.drop(1).map{it.spaceSeparatedStringToIntBoard()};
     println("4a solution: ${solve(sequence, boards, false)}");
     println("4b solution: ${solve(sequence, boards, true)}");
 }
