@@ -1,5 +1,6 @@
-package aoc2021
+package AoC2021
 
+import AoC2020.Constants
 import utils.*
 
 private fun Board.getLowestPointList(): List<Point> {

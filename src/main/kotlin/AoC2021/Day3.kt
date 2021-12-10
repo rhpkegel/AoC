@@ -1,4 +1,4 @@
-package aoc2021
+package AoC2021
 
 import utils.readInputAsListOfStrings
 
@@ -34,7 +34,7 @@ private fun List<String>.getRating(positionToCheck: Int = 0, oxOrScrub: Char): L
     if (this.size <= 1) return this
     val filterbit = this.getGammaAndEpsilon().let {(g, e) -> if (oxOrScrub == 'o') g[positionToCheck] else e[positionToCheck]}
     val filteredList = this.filter { it[positionToCheck] == filterbit }
-    return filteredList.getRating(positionToCheck + 1, oxOrScrub);
+    return filteredList.getRating(positionToCheck + 1, oxOrScrub)
 }
 
 private fun List<String>.day_3_a_solution(): Int = this.getGammaAndEpsilon().let { (g, e) -> e.toInt(2) * g.toInt(2) }

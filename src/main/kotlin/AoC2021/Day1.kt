@@ -1,4 +1,4 @@
-package aoc2021
+package AoC2021
 
 import utils.readInputAsListOfIntegers
 

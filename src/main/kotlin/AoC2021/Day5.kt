@@ -1,4 +1,4 @@
-package aoc2021
+package AoC2021
 
 import utils.Line
 import utils.Point
@@ -30,15 +30,13 @@ private fun String.toCoordinate(): Point {
 
 private fun Line.lineToPoints(considerDiagonals: Boolean = false): List<Point> {
     var result = emptyList<Pair<Int, Int>>()
-    val (x1, y1) = this.first;
+    val (x1, y1) = this.first
     val (x2, y2) = this.second
-    if (x1==x2){
-        x1.let { x -> (minOf(y1,y2)..maxOf(y1,y2)).forEach { y -> result = result.plus(Pair(x, y)) } }
-    }
-    else if (y1 == y2){
-        y1.let { y -> (minOf(x1,x2)..maxOf(x1,x2)).forEach { x -> result = result.plus(Pair(x, y)) } }
-    }
-    else if (considerDiagonals){
+    if (x1 == x2) {
+        x1.let { x -> (minOf(y1, y2)..maxOf(y1, y2)).forEach { y -> result = result.plus(Pair(x, y)) } }
+    } else if (y1 == y2) {
+        y1.let { y -> (minOf(x1, x2)..maxOf(x1, x2)).forEach { x -> result = result.plus(Pair(x, y)) } }
+    } else if (considerDiagonals) {
         var xDir = (minOf(x1, x2)..maxOf(x1, x2)).toList()
         var yDir = (minOf(y1, y2)..maxOf(y1, y2)).toList()
         if (x1 < x2) xDir = xDir.reversed()
@@ -50,15 +48,20 @@ private fun Line.lineToPoints(considerDiagonals: Boolean = false): List<Point> {
 
 private fun List<Line>.toCollisionCount(considerDiagonals: Boolean): HashMap<Point, Int> {
     val result: HashMap<Point, Int> = HashMap()
-    this.forEach{line -> line.lineToPoints(considerDiagonals).forEach{
-        val current = result[it]
-        if (current == null) result[it] = 1 else result[it] = current+1
-    }}
-    return result;
+    this.forEach { line ->
+        line.lineToPoints(considerDiagonals).forEach {
+            val current = result[it]
+            if (current == null) result[it] = 1 else result[it] = current + 1
+        }
+    }
+    return result
 }
 
-private fun List<String>.solve5a(): Int = this.toLineList().toCollisionCount(false).filter { (_,value) -> value>1 }.size
-private fun List<String>.solve5b(): Int = this.toLineList().toCollisionCount(true).filter { (_, value) -> value > 1 }.size
+private fun List<String>.solve5a(): Int =
+    this.toLineList().toCollisionCount(false).filter { (_, value) -> value > 1 }.size
+
+private fun List<String>.solve5b(): Int =
+    this.toLineList().toCollisionCount(true).filter { (_, value) -> value > 1 }.size
 
 fun main() {
     val input = readInputAsListOfStrings("${Constants.INPUT_PATH}input_day_5.txt")

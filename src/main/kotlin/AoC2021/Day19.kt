@@ -1,4 +1,4 @@
-package aoc2021
+package AoC2021
 
 import utils.readInputAsString
 
@@ -10,7 +10,7 @@ private fun String.solve19b(){}
 
 fun main() {
     val input = readInputAsString("${Constants.INPUT_PATH}input_day_19.txt")
-    val result = testInput.solve19a();
+    val result = testInput.solve19a()
     println("Day 19a answer: ${testInput.solve19a()}")
     println("Day 19b answer: ${testInput.solve19b()}")
 }

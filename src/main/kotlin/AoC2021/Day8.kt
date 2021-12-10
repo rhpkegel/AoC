@@ -1,4 +1,4 @@
-package aoc2021
+package AoC2021
 
 import utils.readInputAsListOfStrings
 
@@ -44,7 +44,7 @@ private fun List<Pair<List<String>, List<String>>>.solve8a(): Int {
 }
 
 private fun Pair<List<String>, List<String>>.unscramble(): HashMap<Int, Char> {
-    val unscrambledMap = HashMap<Int, Char>();
+    val unscrambledMap = HashMap<Int, Char>()
     val scrambledList = this.first.plus(this.second)
     val one = scrambledList.firstOrNull { it.length == 2 }!!
     val four = scrambledList.firstOrNull { it.length == 4 }!!
@@ -52,7 +52,7 @@ private fun Pair<List<String>, List<String>>.unscramble(): HashMap<Int, Char> {
     val zeroSixNine = scrambledList.filter { it.length == 6 }
     val twoThreeFive = scrambledList.filter { it.length == 5 }
 
-    unscrambledMap.put(0, seven.filter { !four.contains(it) && !one.contains(it) }.first());
+    unscrambledMap.put(0, seven.filter { !four.contains(it) && !one.contains(it) }.first())
     unscrambledMap.put(5, one.filter { c -> zeroSixNine.all { it.contains(c) } }.first())
     unscrambledMap.put(2, one.filter { it != unscrambledMap[5]!! }.first())
 
@@ -70,7 +70,7 @@ private fun Pair<List<String>, List<String>>.getUnscrambledDigits(): Int {
     val unscrambledMap = this.unscramble()
     val reversedMap = unscrambledMap.entries.associateBy({ it.value }) { it.key }
     val result = this.second.map {numberMap[it.map { reversedMap[it] }.toSet()]}
-    var resultAsStringInt = "";
+    var resultAsStringInt = ""
     result.forEach { resultAsStringInt = resultAsStringInt.plus(it)}
     return resultAsStringInt.toInt()
 }

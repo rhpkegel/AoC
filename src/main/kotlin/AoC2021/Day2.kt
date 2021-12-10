@@ -1,4 +1,4 @@
-package aoc2021
+package AoC2021
 
 import utils.readInputAsListOfStrings
 
@@ -12,7 +12,7 @@ private var test_input = listOf(
 )
 
 private fun List<String>.solve2A(): Int {
-    val forward = this.filter { it.startsWith('f') }.sumOf { it.split(' ')[1].toInt() };
+    val forward = this.filter { it.startsWith('f') }.sumOf { it.split(' ')[1].toInt() }
     val down = this.filter { !it.startsWith('f') }
         .sumOf { if (it.startsWith('d')) it.split(' ')[1].toInt() else ("-" + it.split(' ')[1]).toInt() }
     return forward * down
@@ -29,11 +29,11 @@ private fun List<String>.solve2B(): Int {
                 forward += instructionValue
                 depth += instructionValue * aim
             }
-            "up" -> aim -= instructionValue;
-            "down" -> aim += instructionValue;
+            "up" -> aim -= instructionValue
+            "down" -> aim += instructionValue
         }
     }
-    return forward * depth;
+    return forward * depth
 }
 
 fun main() {
