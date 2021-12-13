@@ -62,6 +62,7 @@ private fun FoldPuzzle.fold(): FoldPuzzle{
     val complementToFill = foldLine * 2
     val pointsGreaterThanFoldLine =
         points.filter { (foldDirection == 'x' && it.first > foldLine) || (foldDirection == 'y' && it.second > foldLine) }
+            .toSet()
     val pointComplements = pointsGreaterThanFoldLine.map {
         if (foldDirection == 'x') complementToFill - it.first to it.second else it.first to complementToFill - it.second
     }
@@ -75,7 +76,7 @@ private fun String.solve13b(): Set<Point> {
     var result = this.parseInput()
     do {
         result = result.fold()
-    } while (!result.second.isEmpty())
+    } while (result.second.isNotEmpty())
     return result.first
 }
 
