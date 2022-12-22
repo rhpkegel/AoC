@@ -17,3 +17,12 @@ fun readInputAsString(path: String): String {
 fun readAsEmptyLineSeparatedStrings(path: String): List<String> {
     return File(path).readText(Charsets.UTF_8).split("\n\n", "\r\n\r\n")
 }
+
+fun <T> Iterable<T>.takeWhileInclusive(pred: (T) -> Boolean): Iterable<T> {
+    var shouldContinue = true
+    return takeWhile {
+        val result = shouldContinue
+        shouldContinue = pred(it)
+        result
+    }
+}

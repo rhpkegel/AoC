@@ -36,7 +36,7 @@ fun List<String>.day_5_b_solution(): List<Int> {
 }
 
 fun main() {
-    val input = readInputAsListOfStrings("${Constants.INPUT_PATH}input_day_5.txt.txt")
+    val input = readInputAsListOfStrings("${Constants.INPUT_PATH}input_day_5b.txt.txt")
     println(input.day_5_a_solution())
     println(input.day_5_b_solution())
 }

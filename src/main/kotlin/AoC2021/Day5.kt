@@ -64,7 +64,7 @@ private fun List<String>.solve5b(): Int =
     this.toLineList().toCollisionCount(true).filter { (_, value) -> value > 1 }.size
 
 fun main() {
-    val input = readInputAsListOfStrings("${Constants.INPUT_PATH}input_day_5.txt")
+    val input = readInputAsListOfStrings("${Constants.INPUT_PATH}input_day_5b.txt")
     println("Day 5a solution: ${input.solve5a()}")
     println("Day 5b solution: ${input.solve5b()}")
 }
