@@ -1,10 +1,10 @@
 package AoC2022
 
+import utils.Point
 import utils.readInputAsString
 import utils.takeWhileInclusive
 
 private typealias Line = List<Int>
-private typealias Point = Pair<Int, Int>
 private typealias Board = List<Line>
 
 private var testInput = ("30373\n" +
