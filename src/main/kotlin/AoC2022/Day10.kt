@@ -167,7 +167,6 @@ private fun CPUState.duringCycleCheck(): CPUState {
     }
     val currentPixel = ((currentCycle -1) % 40)
     val pixelIsLit = (currentPixel == registerValue || currentPixel == registerValue-1 || currentPixel == registerValue + 1)
-//    println("currentPixel=${currentPixel}, registerValue=${registerValue}")
     if (pixelIsLit) print("#  ") else print(".  ")
     if (currentPixel == 39) println()
     return this
