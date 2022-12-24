@@ -1,8 +1,10 @@
 package AoC2022
 
 import utils.readInputAsListOfStrings
-import utils.readInputAsString
-import utils.takeWhileInclusive
+
+private var testInputSmall = ("noop\n" +
+        "addx 3\n" +
+        "addx -5").split("\n")
 
 private var testInput = ("addx 15\n" +
         "addx -11\n" +
@@ -159,10 +161,15 @@ private data class CPUState(
     val signalStrengths: MutableList<Int>
 )
 
-private fun CPUState.postCycleCheck(): CPUState {
-    if ((executionPointer - 20) % 40 == 0) {
-        signalStrengths.add(executionPointer * registerValue)
+private fun CPUState.duringCycleCheck(): CPUState {
+    if ((currentCycle - 20) % 40 == 0) {
+        signalStrengths.add(currentCycle * registerValue)
     }
+    val currentPixel = ((currentCycle -1) % 40)
+    val pixelIsLit = (currentPixel == registerValue || currentPixel == registerValue-1 || currentPixel == registerValue + 1)
+//    println("currentPixel=${currentPixel}, registerValue=${registerValue}")
+    if (pixelIsLit) print("#  ") else print(".  ")
+    if (currentPixel == 39) println()
     return this
 }
 
@@ -171,14 +178,15 @@ private fun CPUState.executeInstruction(): CPUState {
     when (currentInstruction[0]) {
         "noop" -> {
             currentCycle += 1
-            postCycleCheck()
+            duringCycleCheck()
         }
 
         "addx" -> {
             currentCycle += 1
-            postCycleCheck()
+            duringCycleCheck()
+            currentCycle += 1
+            duringCycleCheck()
             registerValue += currentInstruction[1].toInt()
-            postCycleCheck()
         }
 
         else -> throw Error("invalid instruction: ${currentInstruction}")
@@ -199,17 +207,11 @@ private fun List<String>.solve10a(): Int {
     while (cpuState.executionPointer < cpuState.program.size) {
         cpuState.executeInstruction()
     }
-
-    println(cpuState)
-    return -1;
-}
-
-private fun List<String>.solve10b(): Int {
-    return -1
+    return cpuState.signalStrengths.sum();
 }
 
 fun main() {
     val input = readInputAsListOfStrings("${Constants.INPUT_PATH}input_day_10.txt")
     println("Day 10a answer: ${input.solve10a()}")
-    println("Day 10b answer: ${input.solve10b()}")
+    println("Day 10b answer: ZKJFBJFZ")
 }
